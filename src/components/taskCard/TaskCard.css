@@ -1,0 +1,68 @@
+.task-box {
+  max-width: 1312px;
+  width: 100%;
+  border: 1px solid #CECECE;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 24px 24px;
+  gap: 14px;
+}
+.task-box #task-status {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 1px solid #000;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-bottom: auto;
+}
+.task-box #task-status:hover {
+  cursor: pointer;
+}
+.task-box .task-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 1218px;
+  width: 100%;
+}
+.task-box .task-content .task-title-container {
+  display: flex;
+  justify-content: space-between;
+}
+.task-box .task-content .task-title-container .task-title-content {
+  display: flex;
+  gap: 8px;
+  max-width: 246px;
+  width: 100%;
+  align-items: center;
+}
+.task-box .task-content .task-title-container .task-title-content .task-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+}
+.task-box .task-content .task-title-container .task-btn {
+  display: flex;
+  gap: 8px;
+}
+.task-box .task-content .task-title-container .task-btn #edit-btn, .task-box .task-content .task-title-container .task-btn #delete-btn {
+  background-color: white;
+}
+.task-box .task-content .task-description {
+  margin: 0;
+  font-size: 14px;
+  color: #475467;
+  font-weight: 400;
+}
+.task-box .task-content .task-due-date-container {
+  display: flex;
+  gap: 8px;
+}
+.task-box .task-content .task-due-date-container .task-due-date {
+  font-weight: 600;
+  font-size: 14px;
+  color: #667085;
+}/*# sourceMappingURL=TaskCard.css.map */

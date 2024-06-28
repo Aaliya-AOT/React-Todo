@@ -1,0 +1,20 @@
+.header-container {
+  max-width: 1312px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin: auto;
+  padding: 32px;
+  border-bottom: 1px solid #D0D5DD;
+}
+.header-container .header-title {
+  color: #101828;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+.header-container #add-btn {
+  background-color: #0C39C7;
+}/*# sourceMappingURL=Header.css.map */

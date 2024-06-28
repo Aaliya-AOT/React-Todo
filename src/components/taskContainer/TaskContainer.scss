@@ -1,0 +1,17 @@
+.main-task-container{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    .active-list-container, .completed-list-container{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .task-heading{
+            font-weight: 600;
+            font-size: 18px;
+            color: #8B8B8B;
+        }
+    }
+    
+}
