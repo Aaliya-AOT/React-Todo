@@ -4,32 +4,39 @@ import close from "../../assets/close.svg";
 import questionMark from "../../assets/question-mark.svg";
 import InputField from "../../sharedComponents/InputField";
 import Button from "../../sharedComponents/Button";
-// import AddTask from "../../services/AddTask";
-import { toDoList } from '../../services/AddTask';
 
-function Modals({ onClose }) {
+function Modals({ onClose , task}) {
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDate, setTaskDate] = useState("");
-console.log(toDoList)
+
+  //retreive to do list or empty array if there is not data in local storage
+  const toDoList = JSON.parse(localStorage.getItem("toDoList")) || [];
+
+//triggered when form is submitted
   const handleSubmit = (event) => {
     event.preventDefault();
-    const taskData = {
-      taskName:taskName,
-      taskDescription:taskDescription,
-      taskDate:taskDate,
-    };
-    let newList=[...toDoList,taskData];
-    console.log(taskData)
+    const task = {
+      taskId: toDoList.length + 1,
+      taskName: taskName,
+      taskDescription: taskDescription,
+      taskDate: taskDate,
+      taskStatus: false,
+  };
+
+  //creates a array by adding new task into the to do list
+    let taskList = [...toDoList,task];
+    console.log("taskList:  ",taskList)
+    localStorage.setItem("toDoList", JSON.stringify(taskList));
+
+    //close the modal when task is added
     onClose();
-    localStorage.setItem("toDoList", JSON.stringify(newList));
-    // AddTask(taskData);
   };
 
   return (
     <div className="modal-container">
       <div className="modal-header">
-        <h2 className="modal-title"> </h2>
+        <h2 className="modal-title">{task? "Edit Task" : "Add Task"} </h2>
         <Button
           btnId={"cancel-btn"}
           btnClick={onClose}
@@ -77,7 +84,7 @@ console.log(toDoList)
             <Button
               btnType={"submit"}
               btnId={"add-task-btn"}
-              btnText={"Add Task"}
+              btnText={task? "Update Task" : "Add Task"}
             />
           </div>
         </div>
