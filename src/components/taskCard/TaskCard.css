@@ -18,6 +18,13 @@
   border-radius: 50%;
   margin-bottom: auto;
 }
+.task-box #task-status:checked {
+  background-image: url(../../assets/tick.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
 .task-box #task-status:hover {
   cursor: pointer;
 }

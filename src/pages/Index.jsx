@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState } from "react";
 import Header from "../components/header/Header";
 import Modals from "../components/modals/Modals";
 import TaskContainer from "../components/taskContainer/TaskContainer";
@@ -14,7 +14,6 @@ function Index(){
     const toggleModal=()=>{
         setIsModalOpen(!isModalOpen);
     }
-    
     return(
         <div className="main-container">
             <Header toggleModal={toggleModal}/>

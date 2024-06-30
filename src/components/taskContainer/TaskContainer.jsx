@@ -19,7 +19,6 @@ function TaskContainer({toggleModal, toDoList}) {
         </div>
         <div className='completed-list-container'>
             <span className='task-heading'>Completed Tasks</span>
-            <TaskCard/>
         </div>
     </div>
   )

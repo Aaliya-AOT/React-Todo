@@ -6,9 +6,10 @@ import InputField from "../../sharedComponents/InputField";
 import Button from "../../sharedComponents/Button";
 
 function Modals({ onClose , task}) {
-  const [taskName, setTaskName] = useState("");
-  const [taskDescription, setTaskDescription] = useState("");
-  const [taskDate, setTaskDate] = useState("");
+  const [taskName, setTaskName] = useState(task ? task.taskName : "");
+  const [taskDescription, setTaskDescription] = useState(task? task.taskDescription : "");
+  const [taskDate, setTaskDate] = useState(task? task.taskDate : "");
+
 
   //retreive to do list or empty array if there is not data in local storage
   const toDoList = JSON.parse(localStorage.getItem("toDoList")) || [];
@@ -16,18 +17,26 @@ function Modals({ onClose , task}) {
 //triggered when form is submitted
   const handleSubmit = (event) => {
     event.preventDefault();
-    const task = {
-      taskId: toDoList.length + 1,
+    const updatedTask = {
+      taskId: task ? task.taskId : toDoList.length + 1,
       taskName: taskName,
       taskDescription: taskDescription,
       taskDate: taskDate,
-      taskStatus: false,
-  };
+      taskStatus: task ? task.taskStatus : false,
+    };
 
-  //creates a array by adding new task into the to do list
-    let taskList = [...toDoList,task];
-    console.log("taskList:  ",taskList)
-    localStorage.setItem("toDoList", JSON.stringify(taskList));
+    // ...
+
+    if (task) {
+      // Update the task in the toDoList
+      const updatedToDoList = toDoList.map((t) => (t.taskId === task.taskId ? updatedTask : t));
+      localStorage.setItem("toDoList", JSON.stringify(updatedToDoList));
+    } else {
+      // Add the new task to the toDoList
+      let taskList = [...toDoList, updatedTask];
+      localStorage.setItem("toDoList", JSON.stringify(taskList));
+    }
+
 
     //close the modal when task is added
     onClose();
