@@ -15,6 +15,7 @@ function Index() {
   );
   //state with initial value  for the seaarch function
   const [searchText, setSearchText] = useState("");
+  const [sortOption, setSortOption] = useState("Newest First");
 
   // let taskToDo = JSON.parse(localStorage.getItem("toDoList")) || [] ;
   //when btn is clicked , it changes the false to true for opening the modal
@@ -41,10 +42,14 @@ function Index() {
   const handleSearch = (searchText) => {
     setSearchText(searchText);
   };
+
+  const handleSort = (sortOption) =>{
+    setSortOption(sortOption);
+  }
   return (
     <div className="main-container">
       <Header toggleModal={toggleModal} />
-      <TaskFilter onSearch={handleSearch} />
+      <TaskFilter onSearch={handleSearch} onSort={handleSort}/>
       {/* passing the functions from parent to child component - task container , added searchText too to pass it to the child component*/}
       <TaskContainer
         toggleModal={toggleModal}
@@ -53,6 +58,7 @@ function Index() {
         onDelete={handleDelete}
         onSave={handleSave}
         searchText={searchText}
+        sortOption={sortOption}
       />
       {isModalOpen && <Modals onClose={toggleModal} onSave={handleSave} />}
       {isDeleteModalOpen && <DeleteModal onClose={toggleDeleteModal} />}

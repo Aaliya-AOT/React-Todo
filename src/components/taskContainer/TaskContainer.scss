@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
-    .active-list-container, .completed-list-container{
+    .active-list-container{
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -12,6 +12,23 @@
             font-size: 18px;
             color: #8B8B8B;
         }
+        
     }
-    
+    .completed-list-container{
+        display: flex; 
+        justify-content: space-between;
+
+        .task-heading{
+            font-weight: 600;
+            font-size: 18px;
+            color: #8B8B8B;
+        }
+        #clear-completed-btn{
+            background-color: white;
+            border: 1px solid #0C39C7;
+            color: #0C39C7;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
 }

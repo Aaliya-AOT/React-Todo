@@ -1,6 +1,6 @@
 import React from 'react'
 
-function DropDown() {
+function DropDown({onChange}) {
     const dropdownStyle={
         maxWidth: "156px",
         width: "100%",
@@ -12,7 +12,7 @@ function DropDown() {
         fontSize: "16px",
     }
   return (
-    <select style={dropdownStyle} name="sort-dropdown" id="sort-dropdown">
+    <select style={dropdownStyle} name="sort-dropdown" id="sort-dropdown" onChange={onChange}>
         <option value="Newest First">Newest First</option>
         <option value="Oldest First">Oldest First</option>
     </select>

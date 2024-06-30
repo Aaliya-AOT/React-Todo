@@ -3,13 +3,29 @@
   flex-direction: column;
   gap: 32px;
 }
-.main-task-container .active-list-container, .main-task-container .completed-list-container {
+.main-task-container .active-list-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.main-task-container .active-list-container .task-heading, .main-task-container .completed-list-container .task-heading {
+.main-task-container .active-list-container .task-heading {
   font-weight: 600;
   font-size: 18px;
   color: #8B8B8B;
+}
+.main-task-container .completed-list-container {
+  display: flex;
+  justify-content: space-between;
+}
+.main-task-container .completed-list-container .task-heading {
+  font-weight: 600;
+  font-size: 18px;
+  color: #8B8B8B;
+}
+.main-task-container .completed-list-container #clear-completed-btn {
+  background-color: white;
+  border: 1px solid #0C39C7;
+  color: #0C39C7;
+  font-size: 14px;
+  font-weight: 600;
 }/*# sourceMappingURL=TaskContainer.css.map */
