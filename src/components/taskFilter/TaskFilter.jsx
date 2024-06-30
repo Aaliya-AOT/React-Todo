@@ -5,6 +5,8 @@ import './TaskFilter.css'
 import DropDown from '../../sharedComponents/DropDown'
 
 function TaskFilter({onSearch}) {
+
+  //function for the change occuring in search box, retrieves the search box value and passes it to onSearch fn
   const handleSearchChange = (event) => {
     onSearch(event.target.value);
   };

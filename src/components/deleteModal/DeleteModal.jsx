@@ -22,6 +22,7 @@ function DeleteModal({onClose,onDelete}) {
         </div>
         <div className='delete-modal-footer'>
         <Button btnId={"delete-modal-cancel"} btnClick={onClose} btnText={"Cancel"} />
+        {/* on clicking delete task it deletes task and closes the modal */}
         <Button btnId={"delete-modal-confirm"} btnText={"Delete"} btnClick={()=>{onDelete(); onClose();}}/>
         </div>
         </div>

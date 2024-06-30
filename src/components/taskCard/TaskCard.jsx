@@ -11,8 +11,11 @@ import DeleteModal from '../deleteModal/DeleteModal'
 
 
 function TaskCard({task,index,onDelete,onSave}) {
+  //initially set the state variables of both modals as false
   const [isModalOpen,setIsModalOpen] = useState(false);
   const [isDeleteModalOpen,setDeleteIsModalOpen] = useState(false);
+  
+  //when the button is clicked the modals open
   const toggleModal=()=>{
     setIsModalOpen(!isModalOpen);
   }
@@ -39,6 +42,7 @@ function TaskCard({task,index,onDelete,onSave}) {
                     <p className='task-due-date'>by {task?.taskDate}</p>
                 </div>
         </div>
+        {/*passed the save and delete functions to modals */}
         {isModalOpen && <Modals onClose={toggleModal} task={task} onSave={onSave}/>}
         {isDeleteModalOpen && <DeleteModal onClose={toggleDeleteModal} onDelete={()=>onDelete(task.taskId)}/>}
     </div>

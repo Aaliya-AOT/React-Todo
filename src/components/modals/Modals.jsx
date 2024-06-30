@@ -6,6 +6,7 @@ import InputField from "../../sharedComponents/InputField";
 import Button from "../../sharedComponents/Button";
 
 function Modals({ onClose , task, onSave}) {
+  //setting the task details as the stored data if there is task and if there isnt then state variable is set to none
   const [taskName, setTaskName] = useState(task ? task.taskName : "");
   const [taskDescription, setTaskDescription] = useState(task? task.taskDescription : "");
   const [taskDate, setTaskDate] = useState(task? task.taskDate : "");
