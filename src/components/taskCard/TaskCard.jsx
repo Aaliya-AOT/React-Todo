@@ -7,13 +7,18 @@ import editBtn from '../../assets/edit.svg'
 import deleteBtn from '../../assets/delete.svg'
 import Button from '../../sharedComponents/Button'
 import Modals from '../modals/Modals'
+import DeleteModal from '../deleteModal/DeleteModal'
 
 
-function TaskCard({task,index}) {
+function TaskCard({task,index,onDelete,onSave}) {
   const [isModalOpen,setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen,setDeleteIsModalOpen] = useState(false);
   const toggleModal=()=>{
     setIsModalOpen(!isModalOpen);
   }
+  const toggleDeleteModal=()=>{
+    setDeleteIsModalOpen(!isDeleteModalOpen);
+}
   return (
     <div className='task-box' key={index}>
         <InputField inputType={'checkbox'} inputId={'task-status'} />
@@ -25,7 +30,7 @@ function TaskCard({task,index}) {
                     </div>
                     <div className='task-btn'>
                       <Button btnId={'edit-btn'} btnClick={toggleModal} btnText={<img src={editBtn}></img>}/>
-                      <Button btnId={'delete-btn'} btnText={<img src={deleteBtn}></img>}/>
+                      <Button btnId={'delete-btn'} btnClick={toggleDeleteModal} btnText={<img src={deleteBtn}></img>}/>
                     </div>
                 </div>
                 <p className='task-description'>{task?.taskDescription}</p>
@@ -34,7 +39,8 @@ function TaskCard({task,index}) {
                     <p className='task-due-date'>by {task?.taskDate}</p>
                 </div>
         </div>
-        {isModalOpen && <Modals onClose={toggleModal} task={task}/>}
+        {isModalOpen && <Modals onClose={toggleModal} task={task} onSave={onSave}/>}
+        {isDeleteModalOpen && <DeleteModal onClose={toggleDeleteModal} onDelete={()=>onDelete(task.taskId)}/>}
     </div>
   )
 }

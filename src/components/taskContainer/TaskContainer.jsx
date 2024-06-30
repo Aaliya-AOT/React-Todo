@@ -3,7 +3,8 @@ import TaskCard from '../taskCard/TaskCard'
 
 
 //passed the task from todo list to task card
-function TaskContainer({toggleModal, toDoList}) {
+function TaskContainer({toggleModal, toDoList,toggleDeleteModal,onDelete,onSave}) {
+  
   return (
     <div className="main-task-container">
         <div className="active-list-container">
@@ -11,7 +12,7 @@ function TaskContainer({toggleModal, toDoList}) {
             {toDoList?.length>0&&toDoList?.map((task,index)=>{
               return (
                 <div key={index}>
-                  <TaskCard toggleModal={toggleModal} task={task} index={index}/>
+                  <TaskCard toggleModal={toggleModal} task={task} index={index} toggleDeleteModal={toggleDeleteModal} onDelete={onDelete} onSave={onSave}/>
                 </div>
               )
             })}

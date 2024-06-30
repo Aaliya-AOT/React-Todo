@@ -5,7 +5,7 @@ import questionMark from "../../assets/question-mark.svg";
 import InputField from "../../sharedComponents/InputField";
 import Button from "../../sharedComponents/Button";
 
-function Modals({ onClose , task}) {
+function Modals({ onClose , task, onSave}) {
   const [taskName, setTaskName] = useState(task ? task.taskName : "");
   const [taskDescription, setTaskDescription] = useState(task? task.taskDescription : "");
   const [taskDate, setTaskDate] = useState(task? task.taskDate : "");
@@ -24,20 +24,19 @@ function Modals({ onClose , task}) {
       taskDate: taskDate,
       taskStatus: task ? task.taskStatus : false,
     };
-
-    // ...
-
+    let updatedToDoList;
     if (task) {
       // Update the task in the toDoList
-      const updatedToDoList = toDoList.map((t) => (t.taskId === task.taskId ? updatedTask : t));
-      localStorage.setItem("toDoList", JSON.stringify(updatedToDoList));
+       updatedToDoList = toDoList.map((t) => (t.taskId === task.taskId ? updatedTask : t));
+      // localStorage.setItem("toDoList", JSON.stringify(updatedToDoList));
     } else {
       // Add the new task to the toDoList
-      let taskList = [...toDoList, updatedTask];
-      localStorage.setItem("toDoList", JSON.stringify(taskList));
+      updatedToDoList = [...toDoList, updatedTask];
+      // localStorage.setItem("toDoList", JSON.stringify(taskList));
     }
 
-
+    localStorage.setItem("toDoList", JSON.stringify(updatedToDoList));
+    onSave(updatedToDoList);
     //close the modal when task is added
     onClose();
   };
