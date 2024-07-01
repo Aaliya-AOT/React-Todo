@@ -52,6 +52,13 @@ function Index() {
   const handleSort = (sortOption) => {
     setSortOption(sortOption);
   };
+
+    // Function to clear completed tasks
+    const clearCompletedTasks = () => {
+      const updatedToDoList = toDoList.filter((task) => !task.taskStatus);
+      setToDoList(updatedToDoList);
+      localStorage.setItem("toDoList", JSON.stringify(updatedToDoList));
+    };
   return (
     <div className="main-container">
       <Header toggleModal={toggleModal} />
@@ -65,6 +72,7 @@ function Index() {
         onSave={handleSave}
         searchText={searchText}
         sortOption={sortOption}
+        clearCompletedTasks={clearCompletedTasks}
       />
 
       {isModalOpen && (

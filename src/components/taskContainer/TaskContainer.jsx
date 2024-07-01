@@ -2,7 +2,7 @@ import '../taskContainer/TaskContainer.css';
 import TaskCard from '../taskCard/TaskCard';
 import Button from '../../sharedComponents/Button';
 
-function TaskContainer({ toggleModal, toDoList, searchText,sortOption, toggleDeleteModal, onDelete, onSave }) {
+function TaskContainer({ toggleModal, toDoList, searchText,sortOption, toggleDeleteModal, onDelete, onSave,clearCompletedTasks }) {
   //filter the task list based on the search box and sorts task
   const filteredTasks = toDoList
     .filter(task => task.taskName.toLowerCase().includes(searchText.toLowerCase()))
@@ -42,7 +42,7 @@ function TaskContainer({ toggleModal, toDoList, searchText,sortOption, toggleDel
       <div className='completed-list-container'>
         <div className='completed-title'>
         <span className='task-heading'>Completed Tasks</span>
-        <Button btnId={'clear-completed-btn'} btnText={"Clear Completed Tasks"}/>
+        <Button btnId={'clear-completed-btn'} btnText={"Clear Completed Tasks"} btnClick={clearCompletedTasks} />
         </div>
         {completedTasks.length > 0 && completedTasks.map((task, index) => (
           <div key={index}>
