@@ -5,17 +5,21 @@ import questionMark from "../../assets/question-mark.svg";
 import InputField from "../../sharedComponents/InputField";
 import Button from "../../sharedComponents/Button";
 
-function Modals({ onClose , task, onSave}) {
+function Modals({ onClose, task, saveUpdated }) {
   //setting the task details as the stored data if there is task and if there isnt then state variable is set to none
   const [taskName, setTaskName] = useState(task ? task.taskName : "");
-  const [taskDescription, setTaskDescription] = useState(task? task.taskDescription : "");
-  const [taskDate, setTaskDate] = useState(task? task.taskDate : "");
-
+  const [taskDescription, setTaskDescription] = useState(
+    task ? task.taskDescription : ""
+  );
+  const [taskDate, setTaskDate] = useState(task ? task.taskDate : "");
 
   //retreive to do list or empty array if there is not data in local storage
   const toDoList = JSON.parse(localStorage.getItem("toDoList")) || [];
 
-//triggered when form is submitted
+  saveUpdated = (updatedTask) => {
+    console.log(updatedTask);
+  };
+  //triggered when form is submitted
   const handleSubmit = (event) => {
     event.preventDefault();
     const updatedTask = {
@@ -25,27 +29,28 @@ function Modals({ onClose , task, onSave}) {
       taskDate: taskDate,
       taskStatus: task ? task.taskStatus : false,
     };
+
     let updatedToDoList;
     if (task) {
       // Update the task in the toDoList
-       updatedToDoList = toDoList.map((t) => (t.taskId === task.taskId ? updatedTask : t));
-      // localStorage.setItem("toDoList", JSON.stringify(updatedToDoList));
+      updatedToDoList = toDoList.map((t) =>
+        t.taskId === task.taskId ? updatedTask : t
+      );
     } else {
       // Add the new task to the toDoList
       updatedToDoList = [...toDoList, updatedTask];
-      // localStorage.setItem("toDoList", JSON.stringify(taskList));
     }
 
+    // Update localStorage
     localStorage.setItem("toDoList", JSON.stringify(updatedToDoList));
-    onSave(updatedToDoList);
-    //close the modal when task is added
-    onClose();
+    saveUpdated(updatedTask);
+    onClose(); // Close the modal
   };
 
   return (
     <div className="modal-container">
       <div className="modal-header">
-        <h2 className="modal-title">{task? "Edit Task" : "Add Task"} </h2>
+        <h2 className="modal-title">{task ? "Edit Task" : "Add Task"} </h2>
         <Button
           btnId={"cancel-btn"}
           btnClick={onClose}
@@ -93,7 +98,7 @@ function Modals({ onClose , task, onSave}) {
             <Button
               btnType={"submit"}
               btnId={"add-task-btn"}
-              btnText={task? "Update Task" : "Add Task"}
+              btnText={task ? "Update Task" : "Add Task"}
             />
           </div>
         </div>

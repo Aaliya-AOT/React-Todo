@@ -13,7 +13,7 @@ function Index() {
   const [toDoList, setToDoList] = useState(
     JSON.parse(localStorage.getItem("toDoList")) || []
   );
-  //state with initial value  for the seaarch function
+  //state with initial value  for the seaarch function and for sort fn
   const [searchText, setSearchText] = useState("");
   const [sortOption, setSortOption] = useState("Newest First");
 
@@ -26,9 +26,14 @@ function Index() {
     setDeleteIsModalOpen(!isDeleteModalOpen);
   };
 
-  //function to save the edited and new tasks it is saved to the state variable
+  // Function to save the task
   const handleSave = (updatedToDoList) => {
+    console.log("Updated todo list in index", updatedToDoList);
     setToDoList(updatedToDoList);
+  };
+
+  const handleUpdate = (updatedTask) => {
+    setToDoList(updatedTask);
   };
 
   //function to delete task which is also saved to the data list
@@ -43,14 +48,15 @@ function Index() {
     setSearchText(searchText);
   };
 
-  const handleSort = (sortOption) =>{
+  //function for handling sorting based on the option we select
+  const handleSort = (sortOption) => {
     setSortOption(sortOption);
-  }
+  };
   return (
     <div className="main-container">
       <Header toggleModal={toggleModal} />
-      <TaskFilter onSearch={handleSearch} onSort={handleSort}/>
-      {/* passing the functions from parent to child component - task container , added searchText too to pass it to the child component*/}
+      <TaskFilter onSearch={handleSearch} onSort={handleSort} />
+
       <TaskContainer
         toggleModal={toggleModal}
         toDoList={toDoList}
@@ -60,7 +66,10 @@ function Index() {
         searchText={searchText}
         sortOption={sortOption}
       />
-      {isModalOpen && <Modals onClose={toggleModal} onSave={handleSave} />}
+
+      {isModalOpen && (
+        <Modals onClose={toggleModal} saveUpdated={() => handleUpdate()} />
+      )}
       {isDeleteModalOpen && <DeleteModal onClose={toggleDeleteModal} />}
     </div>
   );

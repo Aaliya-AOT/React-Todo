@@ -10,6 +10,7 @@ function TaskFilter({onSearch,onSort}) {
   const handleSearchChange = (event) => {
     onSearch(event.target.value);
   };
+  //function to pass the option selected to parent component
   const handleSortChange = (event) =>{
     onSort(event.target.value);
   }

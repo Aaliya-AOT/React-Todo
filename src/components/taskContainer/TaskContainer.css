@@ -16,13 +16,19 @@
 .main-task-container .completed-list-container {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  gap: 32px;
 }
-.main-task-container .completed-list-container .task-heading {
+.main-task-container .completed-list-container .completed-title {
+  display: flex;
+  justify-content: space-between;
+}
+.main-task-container .completed-list-container .completed-title .task-heading {
   font-weight: 600;
   font-size: 18px;
   color: #8B8B8B;
 }
-.main-task-container .completed-list-container #clear-completed-btn {
+.main-task-container .completed-list-container .completed-title #clear-completed-btn {
   background-color: white;
   border: 1px solid #0C39C7;
   color: #0C39C7;

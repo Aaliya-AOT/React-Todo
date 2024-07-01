@@ -21,10 +21,16 @@ function TaskCard({task,index,onDelete,onSave}) {
   }
   const toggleDeleteModal=()=>{
     setDeleteIsModalOpen(!isDeleteModalOpen);
-}
+  }
+
+  const handleStatusChange = () =>{
+    const updatedTasks = {...task, taskStatus: !task.taskStatus};
+    onSave(updatedTasks);
+  }
   return (
     <div className='task-box' key={index}>
-        <InputField inputType={'checkbox'} inputId={'task-status'} />
+        <InputField inputType={'checkbox'} inputId={'task-status'} checked={task.taskStatus}
+        onChange={handleStatusChange}/>
         <div className='task-content'>
                 <div className='task-title-container'>
                     <div className='task-title-content'>

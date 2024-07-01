@@ -1,5 +1,5 @@
 import React from 'react'
-
+//passed onChange for handling change in option
 function DropDown({onChange}) {
     const dropdownStyle={
         maxWidth: "156px",
